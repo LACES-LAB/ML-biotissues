@@ -39,7 +39,7 @@ def def_exec(nnet: nn.Module, loss_func: Callable[..., Tensor],
                                      weight_decay=weight_decay)
     else:
         # see: https://github.com/amirgholami/adahessian
-        optimizer = optimizer = optim_h2.Adahessian(nnet.parameters(), lr=learning_rate,
+        optimizer = optim_h2.Adahessian(nnet.parameters(), lr=learning_rate,
                                                     weight_decay=weight_decay)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=5)
     train_params = sum(p.numel() for p in nnet.parameters() if p.requires_grad)
